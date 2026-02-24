@@ -1,230 +1,83 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@import "tailwindcss";
+
+@font-face {
+  font-family: "waheed";
+  src: url("/MV_Waheed.woff") format("woff");
 }
 
-:root {
-  --gold: #c8a84b;
-  --gold-light: #e8c97a;
-  --dark: #1a1208;
-  --bg: #0d0a05;
-  --card-bg: #1e1608;
-  --border: #3d2e10;
-  --text: #f0e6c8;
-  --text-muted: #b09060;
+@theme {
+  --font-waheed: "waheed", serif;
+}
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: "Scheherazade New", "Amiri", serif;
-  background-color: var(--bg);
-  color: var(--text);
   min-height: 100vh;
-  padding: 2rem 1rem 4rem;
+  background-color: #0a0704;
+  color: #f0e6c8;
   background-image: radial-gradient(
-      ellipse at 20% 10%,
-      rgba(200, 168, 75, 0.08) 0%,
+      ellipse 120% 80% at 30% 5%,
+      rgba(200, 168, 75, 0.12) 0%,
+      transparent 45%
+    ),
+    radial-gradient(
+      ellipse 100% 60% at 75% 95%,
+      rgba(200, 168, 75, 0.06) 0%,
       transparent 50%
     ),
     radial-gradient(
-      ellipse at 80% 90%,
-      rgba(200, 168, 75, 0.06) 0%,
-      transparent 50%
+      ellipse 100% 100% at 50% 50%,
+      transparent 0%,
+      rgba(10, 7, 4, 0.4) 100%
     );
 }
 
-/* ─── Header ─── */
-.header {
-  text-align: center;
-  margin-bottom: 3rem;
-  padding: 2.5rem 1rem;
-  position: relative;
-}
-
-.header::before,
-.header::after {
+/* Subtle geometric atmosphere */
+body::before {
   content: "";
-  display: block;
-  height: 1px;
-  background: linear-gradient(to left, transparent, var(--gold), transparent);
-  margin: 1rem auto;
-  max-width: 500px;
-}
-
-.bismillah {
-  font-family: "Amiri", serif;
-  font-size: clamp(1.8rem, 5vw, 3rem);
-  color: var(--gold);
-  letter-spacing: 0.05em;
-  margin-bottom: 0.75rem;
-  text-shadow: 0 0 30px rgba(200, 168, 75, 0.3);
-}
-
-.title-main {
-  font-family: "Scheherazade New", serif;
-  font-size: clamp(1.5rem, 4vw, 2.4rem);
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 0.4rem;
-}
-
-.title-sub {
-  font-size: clamp(0.85rem, 2vw, 1rem);
-  color: var(--text-muted);
-  font-family: sans-serif;
-  letter-spacing: 0.1em;
-  direction: ltr;
-}
-
-/* ─── Ornament ─── */
-.ornament {
-  color: var(--gold);
-  font-size: 1.4rem;
-  text-align: center;
-  margin: 1.5rem 0 0.5rem;
-  opacity: 0.7;
-}
-
-/* ─── Grid ─── */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 520px), 1fr));
-  gap: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* ─── Dua Card ─── */
-.dua-card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 2rem 2rem 1.5rem;
-  position: relative;
-  overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-}
-
-.dua-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(200, 168, 75, 0.12);
-  border-color: rgba(200, 168, 75, 0.35);
-}
-
-.dua-card::before {
-  content: "";
-  position: absolute;
+  position: fixed;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(200, 168, 75, 0.04) 0%,
-    transparent 60%
-  );
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0L30 60M0 30L60 30' stroke='%23c8a84b' stroke-opacity='0.02' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
   pointer-events: none;
+  z-index: 0;
 }
 
-/* Number badge */
-.dua-number {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--gold), #8b6914);
-  color: #1a1208;
-  font-family: sans-serif;
-  font-size: 0.75rem;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-/* Arabic text */
-.dua-text {
-  font-family: "Scheherazade New", "Amiri", serif;
-  font-size: clamp(1.25rem, 3vw, 1.6rem);
-  line-height: 2.1;
-  color: var(--text);
-  text-align: justify;
-  direction: rtl;
-}
-
-.dua-text p + p {
-  margin-top: 1rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(200, 168, 75, 0.15);
-}
-
-/* Opening phrase highlight */
-.allahumma {
-  color: var(--gold-light);
-  font-weight: 700;
-}
-
-/* ─── Section title card ─── */
-.dua-card.section-title {
-  background: linear-gradient(135deg, #2a1f08, #1a1208);
-  border-color: var(--gold);
-  text-align: center;
-  padding: 1.5rem;
-}
-
-.dua-card.section-title .dua-text {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
-  color: var(--gold-light);
-}
-
-/* ─── Special short dua ─── */
-.dua-card.short {
-  background: linear-gradient(135deg, #201808, #150f04);
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ─── Footer ─── */
-footer {
-  text-align: center;
-  margin-top: 4rem;
-  color: var(--text-muted);
-  font-family: sans-serif;
-  font-size: 0.78rem;
-  letter-spacing: 0.05em;
-  direction: ltr;
-}
-
-.divider {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  max-width: 1200px;
-  margin: 2rem auto;
-}
-.divider::before,
-.divider::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to left, transparent, var(--border));
-}
-.divider::after {
-  background: linear-gradient(to right, transparent, var(--border));
-}
-.divider span {
-  color: var(--gold);
-  font-size: 1.2rem;
-  flex-shrink: 0;
-}
-
-@media (max-width: 600px) {
-  .dua-card {
-    padding: 1.5rem 1.25rem 1.25rem;
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
   }
-  .dua-number {
-    top: 0.9rem;
-    left: 0.9rem;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+
+.animate-fade-up {
+  opacity: 0;
+  animation: fade-up 0.6s ease-out forwards;
+}
+
+.text-glow {
+  text-shadow: 0 0 40px rgba(200, 168, 75, 0.25);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #e8c97a 0%, #c8a84b 40%, #a68b3a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.page-shadow {
+  box-shadow: inset 0 1px 0 rgba(200, 168, 75, 0.06),
+    0 0 0 1px rgba(200, 168, 75, 0.04);
+}
+
+.dua-arabic {
+  position: relative;
 }

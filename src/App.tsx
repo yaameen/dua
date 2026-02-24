@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+
+const fetchDuas = () =>
+  new Promise((resolve) => {
+    fetch(`/duas.json`)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        resolve(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching duas:", error);
+      });
+  });
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [duas, setDuas] = useState([]);
 
+  useEffect(() => {
+    fetchDuas().then((data) => {
+      setDuas(data);
+    });
+  }, []);
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      {/* <pre>{JSON.stringify(duas, null, 2)}</pre> */}
+      <header className="header">
+        <div className="bismillah">بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ</div>
+        <h1 className="title-main">{duas.header?.title}</h1>
+        <p className="title-sub">{duas.header?.subtitle}</p>
+      </header>
+      <div className="grid">
+        {Object.values(duas.duas || {})?.map((dua: any) => (
+          <div className="dua-card short">
+            <div className="dua-number">{dua.number}</div>
+            <div className="dua-text">{dua.text}</div>
+          </div>
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+
+      <footer>
+        <div className="ornament">✦ ✦ ✦</div>
         <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+          {duas.footer?.title} • {duas.footer?.text}
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      </footer>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

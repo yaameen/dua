@@ -187,7 +187,7 @@ function App() {
                     {parseInt(dayKey, 10)}
                   </span>
                   <h2 className="text-lg font-semibold tracking-wide text-[#e8c97a]">
-                    يوم {parseInt(dayKey, 10)} — Ramadan Day{" "}
+                    دُعَاء رَقْم {parseInt(dayKey, 10)} — Dua Number{" "}
                     {parseInt(dayKey, 10)}
                   </h2>
                   <span className="h-px flex-1 max-w-32 bg-gradient-to-l from-[#3d2e10]/80 via-[#c8a84b]/20 to-transparent" />
